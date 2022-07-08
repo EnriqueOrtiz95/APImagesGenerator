@@ -147,8 +147,8 @@ function mostrarImagenes(imagenes, viewsSort = false, likesSort = false){
     borrarResultado();
     imagenesArr = imagenes;
     
-    const sortImgs =  viewsSort ? imagenesArr.sort((a,b) => a.views - b.views) : 
-                      likesSort ? imagenesArr.sort((a,b) => a.likes - b.likes) :
+    const sortImgs =  viewsSort ? imagenesArr.sort((a,b) => b.views - a.views) : 
+                      likesSort ? imagenesArr.sort((a,b) => b.likes - a.likes) :
                       imagenes;
 
     //?LOOP THROUGH THE ARRAY OF IMAGES AND BUILD THE HTML
