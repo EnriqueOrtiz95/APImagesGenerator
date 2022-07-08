@@ -1,7 +1,6 @@
 const resultado = document.querySelector('#resultado');
 const formulario = document.querySelector('#formulario');
 const paginacionDiv = document.querySelector('#paginacion');
-let terminoBusqueda = document.querySelector('#termino');
 const buscadorContainer = document.querySelector('.buscador');
 const btnSort = document.querySelector('.btn-sort');
 let imagenesArr;
@@ -13,16 +12,17 @@ let iterador;
 let paginaActual = 1;
 
 window.onload = () => {
+    document.querySelector('#termino').value = ''
     formulario.addEventListener('submit', validarFormulario);
-    terminoBusqueda.value = ''
     btnSort.style.display = 'none'
+    paginacionDiv.addEventListener('click', direccionPaginacion);
 }
 
 
 function validarFormulario(e){
     e.preventDefault();
 
-    terminoBusqueda = terminoBusqueda.value;
+    const terminoBusqueda = document.querySelector('#termino').value;
 
     if(terminoBusqueda === ''){
         mostrarAlerta('agrega un termino de busqueda');
@@ -215,5 +215,14 @@ function imprimirPaginador(){
         }
 
         paginacionDiv.appendChild(boton);
+    }
+}
+
+function direccionPaginacion(e) {
+    if(e.target.classList.contains('siguiente')) {
+
+        paginaActual= Number( e.target.dataset.pagina);
+        buscarImagenes();
+        formulario.scrollIntoView();
     }
 }
